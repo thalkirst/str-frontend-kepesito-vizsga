@@ -1,19 +1,25 @@
-<section class="container-md">
+<section class="container-md movieform mt-5 py-3">
   <form #mForm="ngForm">
     <div class="form-group">
       <label class="text-warning" for="title">Movie Title:</label>
-      <input id="title" type="text" class="form-control"
-        required pattern="" name="title" [(ngModel)]="movie.title">
-    </div>
+      <input id="title" type="text" class="form-control" required pattern="[a-zA-Z\u00C0-\u017F\s]{5,25}" name="title" [(ngModel)]="movie.title">
+    </div>/
     <div class="row">
       <div class="form-group col-6">
-
+        <label class="text-warning" for="year">Release year:</label>
+        <input id="year" type="number" class="form-control" required pattern="(19\d\d)|(200\d)|(201\d)|(202[0-1])" name="year" [(ngModel)]="movie.year">
       </div>
       <div class="form-group col-6">
-
+        <label class="text-warning" for="category">Category:</label>
+        <select [(ngModel)]="movie.category" name="category" required class="form-control">
+          <option value="Drama">Drama</option>
+          <option value="Action">Action</option>
+          <option value="Fantasy">Fantasy</option>
+        </select>
       </div>
     </div>
-
+    <button type="submit" [disabled]="mForm.invalid" class="btn btn-warning" (click)="saveMovie()">Save</button>
+    <small class="text-danger d-block my-2">Fill all field to save!</small>
   </form>
 
 
